@@ -1,0 +1,41 @@
+Daily Goal Tracking App:
+
+-Use Bootstrap for this
+-user sign up/log in
+-jwt auth
+-redux to persist login and auth through necessary components
+
+MAIN APP
+
+-Header (logo?)
+  -drop down menu for all sizes - C
+-Landing Page
+  -about/sign up - C
+  -dashboard when signed in
+-Dashboard - C
+  -Goal tracker - C
+  -increment days
+  -total progress bars/wheels for year/month/week/day (card for each?) - C
+  -customizable time length for each goal
+  -Add-a-goal button - C
+    -Main Goals (daily first, then weekly, then monthly, then yearly) - C
+      -selectable/collapsable
+      -card for each
+      -expand with click
+      -animate expand
+      -check mark next to main goal if no sub goal exists
+      -progress bar/wheel for each - C
+      -sub goals (time intervals) shown on expand - C
+        -check mark next to each
+        -progress bar/wheel depending on goal length
+      -edit button opens edit menu which contains save/delete buttons
+        -menu in center of screen, everything else faded in background - C
+      -"accomplished all goals" button
+
+ADDITIONAL GOALS (lofty)
+-Point system unlockables
+  -new themes for your dashboard
+  -Custom theme designer when certain amount of points reached
+  -ability to add music clips when goal is attained
+  -share on facebook/linkedin/twitter
+  -ransom mode: posts to social media that you are slacking on your goals if you go idle
