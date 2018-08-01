@@ -8,8 +8,8 @@ export default class GoalContainer extends Component{
     super(props);
     this.state={
       goals: [
-        {name: "Car Sales", goal: "Sell 204 Cars", now: "35"}, 
-        {name: "Go to Gym", goal: "Go to the gym 3 times this week", now: "66"}
+        {name: "Car Sales", goal: "Sell 204 Cars", now: 35}, 
+        {name: "Go to Gym", goal: "Go to the gym 3 times this week", now: 66}
       ]
     }
   }
