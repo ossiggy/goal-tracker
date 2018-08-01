@@ -13,12 +13,12 @@ APP
   -about/sign up - C
   -dashboard when signed in
 -Dashboard - C
-  -Goal tracker - C
+  *Goal tracker - C
   -increment days
-  -total progress bars/wheels for year/month/week/day (card for each?) - C
+  *total progress bars/wheels for year/month/week/day (card for each?) - C
   -customizable time length for each goal
-    -type of goal(incremental, time limit, complete one at a time etc.)
-  -Add-a-goal button - C
+    *type of goal(incremental, time limit, complete one at a time etc.)
+  *Add-a-goal button - C
     -Main Goals (daily first, then weekly, then monthly, then yearly) - C
       -selectable/collapsable
       -card for each
