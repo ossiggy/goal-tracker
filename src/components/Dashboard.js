@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Grid} from 'react-bootstrap';
 
 import GoalTracker from './GoalTracker';
 
@@ -6,9 +7,9 @@ export default class Dashboard extends Component{
 
   render(){
     return (
-      <div className="dashboard container">
-        <GoalTracker now={45}/>
-      </div>
+      <Grid className="dashboard" fluid={true}>
+        <GoalTracker />
+      </Grid>
     );
   }
 }

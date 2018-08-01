@@ -5,7 +5,7 @@ Daily Goal Tracking App:
 -jwt auth
 -redux to persist login and auth through necessary components
 
-MAIN APP
+APP
 
 -Header (logo?)
   -drop down menu for all sizes - C
@@ -17,6 +17,7 @@ MAIN APP
   -increment days
   -total progress bars/wheels for year/month/week/day (card for each?) - C
   -customizable time length for each goal
+    -type of goal(incremental, time limit, complete one at a time etc.)
   -Add-a-goal button - C
     -Main Goals (daily first, then weekly, then monthly, then yearly) - C
       -selectable/collapsable
@@ -24,6 +25,7 @@ MAIN APP
       -expand with click
       -animate expand
       -check mark next to main goal if no sub goal exists
+      -what kind of goals are they? how will progress be calculated?
       -progress bar/wheel for each - C
       -sub goals (time intervals) shown on expand - C
         -check mark next to each
@@ -31,8 +33,28 @@ MAIN APP
       -edit button opens edit menu which contains save/delete buttons
         -menu in center of screen, everything else faded in background - C
       -"accomplished all goals" button
+-Goal history
+-Weight tracker?
+-Goal category?
+-Tags?
+-motivational videos?
+
+SERVER
+
+-auth
+-users
+-goal table
+-goal history
+-mentor pool
+
+CHAT APP
+
+-Web Sockets
+-connect to mentor pool
+-connect to similar goals for motivation
 
 ADDITIONAL GOALS (lofty)
+
 -Point system unlockables
   -new themes for your dashboard
   -Custom theme designer when certain amount of points reached
