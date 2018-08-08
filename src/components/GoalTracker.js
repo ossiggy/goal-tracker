@@ -24,7 +24,7 @@ export default class GoalTracker extends Component{
               active 
               bsStyle="success" 
               now={this.state.now} 
-              style={{height: "30px", fontSize: "24px"}}
+              style={{height: "30px", "margin-top": "10px"}}
               />
           </Col>
           <Col md={2} className="pull-right">
@@ -33,7 +33,7 @@ export default class GoalTracker extends Component{
             title="Add a Goal"
             id="add-a-goal-button"
             >
-            <MenuItem eventKey="1">Incremental</MenuItem>
+            <MenuItem eventKey="1" onSelect={()=> alert('selected 1')}>Incremental</MenuItem>
             <MenuItem eventKey="2">Timed</MenuItem>
             <MenuItem eventKey="3">One-and-Done</MenuItem>
             </DropdownButton>

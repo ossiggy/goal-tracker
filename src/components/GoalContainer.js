@@ -26,7 +26,6 @@ export default class GoalContainer extends Component{
     
     return(
       <div className="goal-container container">
-        {/* TODO: iterate through and pass thru name props */}
         {goals}
       </div>
     );
