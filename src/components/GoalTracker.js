@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {ProgressBar, DropdownButton, MenuItem, Grid, Row, Col} from 'react-bootstrap';
+import {ProgressBar, DropdownButton, MenuItem, Button, Grid, Row, Col} from 'react-bootstrap';
 import GoalContainer from './GoalContainer';
 
 export default class GoalTracker extends Component{
@@ -9,10 +9,52 @@ export default class GoalTracker extends Component{
   constructor(props){
     super(props);
     this.state={
-      now: 45
+      now: 45,
+      goals: [
+        {
+          type: "Incremental",
+          name: "Car Sales",
+          goal: "200 cars",
+          target: 200,
+          actual: 20,
+          now: 10
+          // TODO: now is going to start at 0 and will be recalculated with each progress
+          // increment.  This could be tricky, but having a global state with redux should help
+        },
+        {
+          type: "Timed",
+          name: "Code For A week",
+          goal: "1 week",
+          now: 30
+        }
+      ]
     }
   }
+
+  // TODO: call with componentWillMount when Redux is added
+
+  calculateTotalGoalProgress(goals){
+    let total=0, divisor=0;
+    goals.forEach(goal=>{
+      total += 100;
+      divisor+= goal.now;
+    })
+    this.setState ({
+      now: (divisor / total)*100
+    })
+  }
+
+  // TODO: create action to calculate individual total progression
+
+  calculateIndividualGoalProgress(goal){
+    let total=0; 
+  }
+
+  selectIncremental(event){
+
+  }
   render(){
+
     return(
       <Grid>
         <Row className="total-progress">
@@ -24,7 +66,7 @@ export default class GoalTracker extends Component{
               active 
               bsStyle="success" 
               now={this.state.now} 
-              style={{height: "30px", "margin-top": "10px"}}
+              style={{height: "30px", "marginTop": "10px"}}
               />
           </Col>
           <Col md={2} className="pull-right">
@@ -43,7 +85,10 @@ export default class GoalTracker extends Component{
           <Col md={12}>
             <h2 className="tracker-heading">Active Goals</h2>
           </Col>
-          <GoalContainer />
+          <Col md={1} xs={4}>
+            <Button bsStyle="success">Calculate</Button>
+          </Col>
+          <GoalContainer goals={this.state.goals}/>
         </Row>
       </Grid>
     );
