@@ -3,6 +3,7 @@ import React from 'react';
 import {ProgressBar, Button, Grid, Row, Col} from 'react-bootstrap';
 
 export default function Goal(props){
+
   return(
     <Grid fluid={true}>
       <Row className="goal-container">
@@ -10,7 +11,7 @@ export default function Goal(props){
           <h3>{props.name}</h3>
         </Col>
         <Col className="goal-container-goal" md={12}>
-          <h4>{props.goal}</h4>
+          <h4>{props.type}: {props.goal}</h4>
         </Col>
       </Row>
       <Row className="goal-progress">
