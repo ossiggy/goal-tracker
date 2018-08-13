@@ -3,7 +3,12 @@ import {Modal} from 'react-bootstrap';
 
 export default class Incremental extends Component{
 
-  // onSubmit action to add goal to state
+  constructor(props){
+    super(props);
+    this.state = {
+      
+    }
+  }
 
     onHide(){
       if(this.props.onHide){
@@ -16,7 +21,7 @@ export default class Incremental extends Component{
       <Modal show={this.props.show} onHide={this.onHide}>
         <Modal.Header closeButton>
           <Modal.Title id="incremental-modal-title">Incremental</Modal.Title>
-          <h2>Set a goal, advance one step at a time</h2>
+          <h5>Set a goal, advance one step at a time</h5>
         </Modal.Header>
       </Modal>
     );
