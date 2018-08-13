@@ -9,51 +9,46 @@ export default class GoalTracker extends Component{
   constructor(props){
     super(props);
     this.state={
-      now: 45,
       goals: [
         {
           type: "Incremental",
           name: "Car Sales",
           goal: "200 cars",
           target: 200,
-          actual: 20,
-          now: 10
-          // TODO: now is going to start at 0 and will be recalculated with each progress
-          // increment.  This could be tricky, but having a global state with redux should help
+          actual: 20
         },
         {
           type: "Timed",
-          name: "Code For A week",
+          name: "Code Everyday",
           goal: "1 week",
-          now: 30
+          target: 7,
+          actual: 1,
         }
-      ]
+      ],
+      show: false
     }
-  }
+  };
 
-  // TODO: call with componentWillMount when Redux is added
-
-  calculateTotalGoalProgress(goals){
-    let total=0, divisor=0;
-    goals.forEach(goal=>{
-      total += 100;
-      divisor+= goal.now;
-    })
-    this.setState ({
-      now: (divisor / total)*100
-    })
-  }
-
-  // TODO: create action to calculate individual total progression
-
-  calculateIndividualGoalProgress(goal){
-    let total=0; 
-  }
 
   selectIncremental(event){
 
   }
+
+
   render(){
+    let now=0;
+    let totalToCompletion = 0;
+    let currentProgress = 0;
+    const goals = this.state.goals
+
+    if(goals){
+      goals.forEach(goal=>{
+        totalToCompletion += 100;
+        currentProgress+= goal.now;
+      })
+      now = (currentProgress / totalToCompletion) * 100
+      console.log(now)
+    }
 
     return(
       <Grid>
@@ -65,7 +60,7 @@ export default class GoalTracker extends Component{
             <ProgressBar 
               active 
               bsStyle="success" 
-              now={this.state.now} 
+              now={now} 
               style={{height: "30px", "marginTop": "10px"}}
               />
           </Col>
