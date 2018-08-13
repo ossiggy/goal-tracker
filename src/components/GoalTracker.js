@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {ProgressBar, DropdownButton, MenuItem, Grid, Row, Col} from 'react-bootstrap';
 import GoalContainer from './GoalContainer';
 
+import Timed from './modals/Timed';
+
 export default class GoalTracker extends Component{
 
   // TODO: iterate over goals kept in state, print out GoalContainer for each
@@ -27,18 +29,28 @@ export default class GoalTracker extends Component{
           actual: 7,
         }
       ],
-      show: false,
+      showTimed: false,
+      showConitional: false,
+      showOneAndDone:false,
+      showIncremental:false,
       completedGoals: []
     }
+
+    this.addGoal = this.addAGoal.bind(this);
   };
 
 
-  addAGoal(newGoal) {
-    this.setState ({
-      goals: [...this.state.goals, newGoal]
-    })
+  addGoal(newGoal) {
+    
   }
 
+  showModal(type){
+    this.setState({[type]: true})
+  }
+
+  hideModal(type){
+    this.setState({[type]: false})
+  }
 
   render(){
     let now=0;
@@ -75,11 +87,12 @@ export default class GoalTracker extends Component{
             title="Add a Goal"
             id="add-a-goal-button"
             >
-            <MenuItem eventKey="incremental" onSelect={()=> alert('selected 1')}>Incremental</MenuItem>
-            <MenuItem eventKey="timed">Timed</MenuItem>
+            <MenuItem eventKey="incremental">Incremental</MenuItem>
+            <MenuItem eventKey="timed" onClick={()=>this.showModal("showTimed")}>Timed</MenuItem>
             <MenuItem eventKey="conditional">Conditional</MenuItem>
             <MenuItem eventKey="one-and-done">One-and-Done</MenuItem>
             </DropdownButton>
+            <Timed show={this.state.showTimed} onHide={()=>this.hideModal("showTimed")} addGoal={this.addGoal}/>
           </Col>
         </Row>
         <Row className="active-goals">
