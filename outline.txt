@@ -8,7 +8,7 @@ Daily Goal Tracking App:
 APP
 
 -Header (logo?)
-  -drop down menu for all sizes - C
+  -drop down menu for nav - C
 -Landing Page
   -about/sign up - C
   -dashboard when signed in
