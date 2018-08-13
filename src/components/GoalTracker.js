@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {ProgressBar, DropdownButton, MenuItem, Button, Grid, Row, Col} from 'react-bootstrap';
+import {ProgressBar, DropdownButton, MenuItem, Grid, Row, Col} from 'react-bootstrap';
 import GoalContainer from './GoalContainer';
 
 export default class GoalTracker extends Component{
@@ -15,23 +15,28 @@ export default class GoalTracker extends Component{
           name: "Car Sales",
           goal: "200 cars",
           target: 200,
-          actual: 20
+          actual: 50
         },
         {
+          // TODO: come up with a time keeper that checks if goal was updated daily
+          // Do I call this timed? Or conditional?
           type: "Timed",
           name: "Code Everyday",
           goal: "1 week",
           target: 7,
-          actual: 1,
+          actual: 7,
         }
       ],
-      show: false
+      show: false,
+      completedGoals: []
     }
   };
 
 
-  selectIncremental(event){
-
+  addAGoal(newGoal) {
+    this.setState ({
+      goals: [...this.state.goals, newGoal]
+    })
   }
 
 
@@ -44,7 +49,7 @@ export default class GoalTracker extends Component{
     if(goals){
       goals.forEach(goal=>{
         totalToCompletion += 100;
-        currentProgress+= goal.now;
+        currentProgress+= (goal.actual / goal.target) * 100;
       })
       now = (currentProgress / totalToCompletion) * 100
       console.log(now)
@@ -61,7 +66,7 @@ export default class GoalTracker extends Component{
               active 
               bsStyle="success" 
               now={now} 
-              style={{height: "30px", "marginTop": "10px"}}
+              style={{height: "34px"}}
               />
           </Col>
           <Col md={2} className="pull-right">
@@ -70,18 +75,16 @@ export default class GoalTracker extends Component{
             title="Add a Goal"
             id="add-a-goal-button"
             >
-            <MenuItem eventKey="1" onSelect={()=> alert('selected 1')}>Incremental</MenuItem>
-            <MenuItem eventKey="2">Timed</MenuItem>
-            <MenuItem eventKey="3">One-and-Done</MenuItem>
+            <MenuItem eventKey="incremental" onSelect={()=> alert('selected 1')}>Incremental</MenuItem>
+            <MenuItem eventKey="timed">Timed</MenuItem>
+            <MenuItem eventKey="conditional">Conditional</MenuItem>
+            <MenuItem eventKey="one-and-done">One-and-Done</MenuItem>
             </DropdownButton>
           </Col>
         </Row>
         <Row className="active-goals">
           <Col md={12}>
             <h2 className="tracker-heading">Active Goals</h2>
-          </Col>
-          <Col md={1} xs={4}>
-            <Button bsStyle="success">Calculate</Button>
           </Col>
           <GoalContainer goals={this.state.goals}/>
         </Row>
