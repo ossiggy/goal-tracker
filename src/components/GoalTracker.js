@@ -36,12 +36,16 @@ export default class GoalTracker extends Component{
       completedGoals: []
     }
 
-    this.addGoal = this.addAGoal.bind(this);
+    this.addGoal = this.addGoal.bind(this);
   };
 
 
   addGoal(newGoal) {
     
+
+    this.setState({
+      goals:[...this.state.goals, newGoal]
+    })
   }
 
   showModal(type){
@@ -64,7 +68,6 @@ export default class GoalTracker extends Component{
         currentProgress+= (goal.actual / goal.target) * 100;
       })
       now = (currentProgress / totalToCompletion) * 100
-      console.log(now)
     }
 
     return(
@@ -92,7 +95,7 @@ export default class GoalTracker extends Component{
             <MenuItem eventKey="conditional">Conditional</MenuItem>
             <MenuItem eventKey="one-and-done">One-and-Done</MenuItem>
             </DropdownButton>
-            <Timed show={this.state.showTimed} onHide={()=>this.hideModal("showTimed")} addGoal={this.addGoal}/>
+            <Timed show={this.state.showTimed} onHide={()=>this.hideModal("showTimed")} addGoal={goal=>this.addGoal(goal)}/>
           </Col>
         </Row>
         <Row className="active-goals">
