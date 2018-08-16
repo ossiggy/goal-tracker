@@ -5,6 +5,6 @@ export default function validateTimed(object){
     timeFrame: timeFrame.length===0,
     quantity: quantity==="0",
     additionalInput: additionalInput.length===0,
-    dividedBy: dividedBy.length===0,
+    dividedBy: dividedBy==="0"
   }
 }
