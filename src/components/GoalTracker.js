@@ -41,8 +41,7 @@ export default class GoalTracker extends Component{
 
 
   addGoal(newGoal) {
-    
-
+    console.log(this.state)
     this.setState({
       goals:[...this.state.goals, newGoal]
     })
