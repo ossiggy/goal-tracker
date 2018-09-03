@@ -13,6 +13,7 @@ export default class Timed extends Component{
 constructor(props){
   super(props);
   this.state = {
+    type: 'timed',
     name:'',
     description:'',
     startDate: moment(),
@@ -57,8 +58,9 @@ constructor(props){
 
   addGoal(e){
     e.preventDefault()
-      if(this.props.addGoal){
-      console.log(this.state)
+    if(this.props.addGoal&&this.props.onHide){
+      this.props.addGoal(this.state)
+      this.props.onHide()
     }
   }
 
@@ -102,6 +104,7 @@ constructor(props){
           name="description"
           type="textfield"
           onChange={this.handleInputChange} 
+          onBlur={this.handleBlur('description')}
           placeholder="Finish this by then etc..."
           />
           <h5 className="modal-form-startdate">When are you starting?</h5>
