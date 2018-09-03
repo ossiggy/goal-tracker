@@ -1,8 +1,7 @@
 export default function validateTimed(object){
-  const {name, timeFrame, quantity} = object;
+  const {name, description} = object;
   return {
     name: name.length===0,
-    quantity: quantity==="0",
-    timeFrame: timeFrame.length===0
+    description: description.length===0
   }
 }
