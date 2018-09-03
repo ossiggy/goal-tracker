@@ -14,18 +14,17 @@ constructor(props){
   super(props);
   this.state = {
     name:'',
-    timeFrame: '',
-    quantity:0,
+    description:'',
     startDate: moment(),
-    completeDate: '',
+    endDate: moment().add(1, 'day'),
     touched: {
       name: false,
+      description: false
     }
   }
 
   this.handleInputChange = this.handleInputChange.bind(this);
   this.handleBlur = this.handleBlur.bind(this);
-  this.changeStartDate = this.changeStartDate.bind(this);
 }
 
   handleBlur = (field) => (evt) => {
@@ -39,28 +38,26 @@ constructor(props){
     const value = target.value;
     const name = target.name;
     this.setState({[name]: value});
-    console.log(this.state)
-    if(this.state.timeFrame.length>0&&name==="quantity"){
-      this.setState({
-        completeDate: this.state.startDate.add(value, this.state.timeFrame)
-      })
-    }
-    if(name==="timeFrame"&&this.state.quantity>0){
-      this.setState({
-        completeDate: this.state.startDate.add(this.state.quantity, value)
-      })
-    }
   }
 
-  changeStartDate(date){
-    this.setState({
-      startDate: date,
-    })
+  handleChange = ({ startDate, endDate }) => {
+    startDate = startDate || this.state.startDate
+    endDate = endDate || this.state.endDate
+
+    if (startDate.isAfter(endDate)) {
+      endDate = startDate
+    }
+
+    this.setState({ startDate, endDate })
   }
 
-  addGoal(e) {
+  handleChangeStart = (startDate) => this.handleChange({ startDate })
+
+  handleChangeEnd = (endDate) => this.handleChange({ endDate })
+
+  addGoal(e){
     e.preventDefault()
-    if(this.props.addGoal){
+      if(this.props.addGoal){
       console.log(this.state)
     }
   }
@@ -99,42 +96,35 @@ constructor(props){
           onChange={this.handleInputChange} 
           onBlur={this.handleBlur('name')}
           placeholder="Goal name?"/>
-          <h5 className="modal-form-timeframe">What's the timeframe?</h5>
+          <h5 className="description-title">Brief Description</h5>
           <input 
-          className={shouldMarkError('quantity') ? "error" : ""}
-          name="quantity"
-          type="number"
-          min="1" 
-          value={this.state.quantity}
+          className={shouldMarkError('description') ? "error" : ""}
+          name="description"
+          type="textfield"
           onChange={this.handleInputChange} 
-          placeholder="0"
-          style={{width:"50px"}}
+          placeholder="Finish this by then etc..."
           />
-          <select 
-          className={shouldMarkError('timeFrame') ? "error" : ""}
-          name="timeFrame"
-          value={this.state.timeFrame}
-          onChange={this.handleInputChange}
-            >
-            <option value=''>Choose one</option>
-            <option value="day">Day(s)</option>
-            <option value="week">Week(s)</option>
-            <option value="months">Month(s)</option>
-            <option value="year">Year(s)</option>
-          </select>
           <h5 className="modal-form-startdate">When are you starting?</h5>
           <DatePicker
           customInput={<DatePickerButton />}
           name="startDate"
           minDate={moment()}
           selected={this.state.startDate} 
-          onSelect={this.changeStartDate}
+          onSelect={this.handleChangeStart}
+          />
+          <h5 className="modal-form-enddate">When are you ending?</h5>
+          <DatePicker
+          customInput = {<DatePickerButton />}
+          name="endDate"
+          minDate={moment().add(1, 'day')}
+          selected={this.state.endDate}
+          onSelect={this.handleChangeEnd}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button disabled={isDisabled} 
           bsStyle="success" 
-          onClick={(e)=>this.addGoal(e)}
+          onClick={e=> this.addGoal(e)}
           >Save</Button>
         </Modal.Footer>
       </Modal>
